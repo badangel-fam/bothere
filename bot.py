@@ -1,26 +1,10 @@
 import os
 import asyncio
-import threading
-from flask import Flask
 import discord
 from discord.ext import commands
 from gtts import gTTS
 import yt_dlp
-
-# --- Flask Server สำหรับให้ UptimeRobot คอยยิงปลุก (กันบอทหลับ) ---
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "I am alive and running!"
-
-def run_web():
-    app.run(host='0.0.0.0', port=8080)
-
-def keep_alive():
-    t = threading.Thread(target=run_web)
-    t.start()
-# --------------------------------------------------------
+from keep_alive import keep_alive
 
 intents = discord.Intents.default()
 intents.message_content = True
